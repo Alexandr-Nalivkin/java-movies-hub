@@ -71,9 +71,8 @@ public class MoviesApiTest {
         assertEquals("application/json; charset=UTF-8", contentTypeHeaderValue,
                 "Content-Type должен содержать формат данных и кодировку");
 
-        String body = resp.body().trim();
-        assertTrue(body.startsWith("[") && body.endsWith("]"),
-                "Ожидается JSON-массив");
+        List<Movie> movies = gson.fromJson(resp.body(), new ListOfMoviesTypeToken().getType());
+        assertTrue(movies.isEmpty());
     }
 
     @Test
