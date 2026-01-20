@@ -18,13 +18,11 @@ public class MoviesStore {
         return movies.values().stream().toList();
     }
 
-    public Movie addMovie(String title, int year) {
-        Movie newMovie = new Movie(title, year);
-
-        if (!movies.containsValue(newMovie)) {
-            newMovie.setId(++currentId);
-            movies.put(newMovie.getId(), newMovie);
-            return newMovie;
+    public Movie addMovie(Movie movie) {
+        if (!movies.containsValue(movie)) {
+            movie.setId(++currentId);
+            movies.put(movie.getId(), movie);
+            return movie;
         }
 
         return null;

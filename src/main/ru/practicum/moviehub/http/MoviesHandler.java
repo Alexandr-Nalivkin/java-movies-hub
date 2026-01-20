@@ -114,7 +114,7 @@ public class MoviesHandler extends BaseHttpHandler {
                 sendValidationError(ex, errorText);
             }
 
-            Movie addedMovie = moviesStore.addMovie(title, year);
+            Movie addedMovie = moviesStore.addMovie(new Movie(title, year));
             if (addedMovie == null) {
                 System.out.println("Фильм уже добавлен");
             }
