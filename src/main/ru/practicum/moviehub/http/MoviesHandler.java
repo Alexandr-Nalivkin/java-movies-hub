@@ -154,6 +154,7 @@ public class MoviesHandler extends BaseHttpHandler {
 
             if (moviesStore.removeMovieById(id)) {
                 sendNoContent(ex);
+                return;
             }
 
             sendJson(ex, 404, createJsonError("Фильм не найден", List.of()));
@@ -182,7 +183,7 @@ public class MoviesHandler extends BaseHttpHandler {
     private List<String> verifyBody(String title, int year) {
         List<String> errors = new ArrayList<>();
 
-        if (title.isBlank()) {
+        if (title == null || title.isBlank()) {
             errors.add("Название не должно быть пустым");
         } else if (title.length() > MAX_LENGTH_TITLE) {
             errors.add("Длина названия должна быть не более " + MAX_LENGTH_TITLE + " символов");
